@@ -1,0 +1,12 @@
+{
+    "hello": "Hello",
+    "themeText": "Light/Dark",
+    "createButton": "Create",
+    "description": "Description",
+    "enterDescription": "Enter the description.",
+    "header":"Header",
+    "enterHeader":"Give a header to task.",
+    "bigEvent":"Big Event",
+    "casualEvent":"Casual Event",
+    "fillAreaError":"Please fill all area."
+}

@@ -1,0 +1,13 @@
+{
+    "hello": "Merhaba",
+
+    "themeText": "Açık/Koyu",
+    "createButton": "Oluştur",
+    "description": "Açıklama",
+    "enterDescription": "Açıklamayı giriniz.",
+    "header":"Başlık",
+    "enterHeader":"Başlığı giriniz..",
+    "bigEvent":"Büyük Olay",
+    "casualEvent":"Normal Olay",
+    "fillAreaError":"Lütfen tüm alanları doldurunuz."
+}
