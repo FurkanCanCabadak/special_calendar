@@ -8,5 +8,6 @@
     "enterHeader":"Give a header to task.",
     "bigEvent":"Big Event",
     "casualEvent":"Casual Event",
-    "fillAreaError":"Please fill all area."
+    "fillAreaError":"Please fill all area.",
+    "noEvents": "No events available"
 }
