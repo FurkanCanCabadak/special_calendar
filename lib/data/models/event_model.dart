@@ -22,6 +22,21 @@ class EventModel extends HiveObject {
     required this.eventType,
     required this.isDeleted,
   });
+  EventModel copyWith({
+    DateTime? dateTime,
+    String? header,
+    String? description,
+    EventType? eventType,
+    bool? isDeleted,
+  }) {
+    return EventModel(
+      dateTime: dateTime ?? this.dateTime,
+      header: header ?? this.header,
+      description: description ?? this.description,
+      eventType: eventType ?? this.eventType,
+      isDeleted: isDeleted ?? this.isDeleted,
+    );
+  }
 
   static List<EventModel> eventList = [];
 }

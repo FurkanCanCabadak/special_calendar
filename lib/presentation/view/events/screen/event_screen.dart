@@ -1,6 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:sizer/sizer.dart';
+import 'package:special_calendar/bloc/event/bloc/event_bloc.dart';
 import 'package:special_calendar/constants/color_constants.dart';
 import 'package:special_calendar/constants/padding_constants.dart';
 import 'package:special_calendar/core/enums/event_type_enum.dart';
@@ -42,33 +44,6 @@ class _EventScreenState extends State<EventScreen> {
     return Scaffold(
       resizeToAvoidBottomInset: false,
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
-      floatingActionButton: ElevatedButton(
-        onPressed: () {
-          //create new event to calendar
-          if (selectedEventType != EventType.none &&
-              eventTime != DateTime.now() &&
-              _controllerDesc.text != '' &&
-              _controllerHeader.text != '') {
-            EventModel.eventList.add(EventModel(
-              header: _controllerHeader.text,
-              dateTime: eventTime,
-              description: _controllerDesc.text,
-              eventType: selectedEventType,
-              isDeleted: false,
-            ));
-            clearAndPop();
-          } else {
-            ScaffoldMessenger.of(context).showSnackBar(
-              SnackBar(
-                content: Text(
-                  context.myLocalization.translation("fillAreaError"),
-                ),
-              ),
-            );
-          }
-        },
-        child: Text(context.myLocalization.translation('createButton')),
-      ),
       body: SingleChildScrollView(
         child: Padding(
           padding: PaddingConstants.appPadding,
@@ -155,6 +130,44 @@ class _EventScreenState extends State<EventScreen> {
               ).symetricalPadding(vertical: 2.h)
             ],
           ),
+        ),
+      ),
+      floatingActionButton: BlocProvider(
+        create: (context) => EventBloc(),
+        child: BlocBuilder<EventBloc, EventState>(
+          builder: (context, state) {
+            return ElevatedButton(
+              onPressed: () {
+                if (selectedEventType != EventType.none &&
+                    eventTime != DateTime.now() &&
+                    _controllerDesc.text.isNotEmpty &&
+                    _controllerHeader.text.isNotEmpty) {
+                  final event = EventModel(
+                    header: _controllerHeader.text,
+                    dateTime: eventTime,
+                    description: _controllerDesc.text,
+                    eventType: selectedEventType,
+                    isDeleted: false,
+                  );
+                  EventModel.eventList.add(event);
+                  context.read<EventBloc>().add(AddEvent(event));
+                  clearAndPop();
+                } else {
+                  ScaffoldMessenger.of(context).removeCurrentSnackBar();
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    SnackBar(
+                      behavior: SnackBarBehavior.floating,
+                      content: Text(
+                        context.myLocalization.translation("fillAreaError"),
+                      ),
+                      duration: const Duration(seconds: 4),
+                    ),
+                  );
+                }
+              },
+              child: Text(context.myLocalization.translation('createButton')),
+            );
+          },
         ),
       ),
     );

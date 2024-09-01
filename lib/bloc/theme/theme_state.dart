@@ -10,6 +10,10 @@ class ThemeLightState extends ThemeState {
   ThemeLightState()
       : super(
           ThemeData(
+            snackBarTheme: const SnackBarThemeData(
+                contentTextStyle:
+                    TextStyle(color: ColorConstants.primaryLightColor),
+                backgroundColor: ColorConstants.secondaryColor),
             brightness: Brightness.light,
             iconTheme:
                 const IconThemeData(color: ColorConstants.primaryLightColor),
@@ -47,6 +51,10 @@ class ThemeDarkState extends ThemeState {
   ThemeDarkState()
       : super(
           ThemeData(
+            snackBarTheme: SnackBarThemeData(
+                contentTextStyle:
+                    TextStyle(color: ColorConstants.primaryDarkColor),
+                backgroundColor: ColorConstants.buttonTappedDarkColor),
             brightness: Brightness.dark,
             appBarTheme: AppBarTheme(
                 iconTheme: IconThemeData(

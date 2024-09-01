@@ -9,5 +9,7 @@
     "enterHeader":"Başlığı giriniz..",
     "bigEvent":"Büyük Olay",
     "casualEvent":"Normal Olay",
-    "fillAreaError":"Lütfen tüm alanları doldurunuz."
+    "fillAreaError":"Lütfen tüm alanları doldurunuz.",
+    "noEvents": "Herhangi bir olay bulunamadı."
+
 }
